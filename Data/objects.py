@@ -86,25 +86,25 @@ class Coins(py.sprite.Sprite):
         self.MainRect = py.Rect(self.XAxix, self.YAxix, 32, 32)
 
 
-class Cursor(py.sprite.Sprite):
-    def __init__(self):
-        super().__init__()
-        self.Image = py.image.load("images/buttons/Cursor.png")
-        self.MousePos = py.mouse.get_pos()
-        self.MainRect = py.Rect(self.MousePos[0], self.MousePos[1], 32, 32)
+# class Cursor(py.sprite.Sprite):
+#     def __init__(self):
+#         super().__init__()
+#         self.Image = py.image.load("images/buttons/Cursor.png")
+#         self.MousePos = py.mouse.get_pos()
+#         self.MainRect = py.Rect(self.MousePos[0], self.MousePos[1], 32, 32)
 
-    def Display(self):
-        py.mouse.set_visible(False)
-        self.MousePos = py.mouse.get_pos()
-        self.MainRect = py.Rect(self.MousePos[0], self.MousePos[1], 16, 16)
-        if (
-            self.MainRect.x > 0
-            and self.MainRect.y > 0
-            and self.MainRect.x < 598
-            and self.MainRect.y < 496
-        ):
-            self.MousePos = py.mouse.get_pos()
-            self.MainRect = py.Rect(self.MousePos[0], self.MousePos[1], 16, 16)
-            Screen.MainScreen.blit(
-                self.Image, (self.MainRect.x - 7, self.MainRect.y - 5)
-            )
+#     def Display(self):
+#         py.mouse.set_visible(False)
+#         self.MousePos = py.mouse.get_pos()
+#         self.MainRect = py.Rect(self.MousePos[0], self.MousePos[1], 16, 16)
+#         if (
+#             self.MainRect.x > 0
+#             and self.MainRect.y > 0
+#             and self.MainRect.x < 598
+#             and self.MainRect.y < 496
+#         ):
+#             self.MousePos = py.mouse.get_pos()
+#             self.MainRect = py.Rect(self.MousePos[0], self.MousePos[1], 16, 16)
+#             Screen.MainScreen.blit(
+#                 self.Image, (self.MainRect.x - 7, self.MainRect.y - 5)
+#             )

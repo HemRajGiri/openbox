@@ -23,7 +23,7 @@ if __name__ == "__main__":
     MrRock = Rock()
     MrShards = Shards()
     MrCoin = Coins()
-    MrCursor = Cursor()
+    # MrCursor = Cursor()
 
     def MrRockControls():
         # Defining and Controling all the function from other modules related to player here
@@ -36,15 +36,15 @@ if __name__ == "__main__":
         MrRock.Moving()
         MrRock.Boosting()
 
-    def ForGodplayer():
-        if MrRock.Score >= 2000:
+    # def ForGodplayer():
+    #     if MrRock.Score >= 2000:
 
-            GodLevel = MrRock.Myfont.render(
-                "Your are a god !", True, (255, 10, 10))
-            Screen.MainScreen.blit(GodLevel, (450, 0))
-            Screen.Title = "Your are god Level!"
-            py.display.set_icon(Screen.IconGod)
-            MrCoin.Amount = 1000
+    #         GodLevel = MrRock.Myfont.render(
+    #             "Your are a god !", True, (255, 10, 10))
+    #         Screen.MainScreen.blit(GodLevel, (450, 0))
+    #         Screen.Title = "Your are god Level!"
+    #         py.display.set_icon(Screen.IconGod)
+    #         MrCoin.Amount = 1000
 
     def ShardsControls():
         MrShards.Display()
@@ -85,8 +85,8 @@ if __name__ == "__main__":
             MrCoin.Velocity = 0
             MrRock.RunningRock = False
 
-    def CursorControls():
-        MrCursor.Display()
+    # def CursorControls():
+    #     MrCursor.Display()
 
     def Exit():
         if MrRock.Health <= 0:
@@ -117,15 +117,16 @@ if __name__ == "__main__":
 
             Screen.Display()
             Screen.Clock()
+
+
             ShardsControls()
             MrRockControls()
-
             CoinControls()
 
-            Exit()
             Screen.Starmenu()
-            CursorControls()
-            ForGodplayer()
+            # CursorControls()
+            # ForGodplayer()
+            Exit()
             py.display.update()
 
         py.quit()
