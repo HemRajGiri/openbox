@@ -21,8 +21,11 @@ if __name__ == "__main__":
     # If not then code doesn't run but if yes the codes Below will run!
 
     MrRock = Rock()
+
+    all_coins = [Coins() , Coins() , Coins() , Coins()]
+    all_shards = [Shards() , Shards() , Shards() , Shards()]
+
     MrShards = Shards()
-    MrCoin = Coins()
     # MrCursor = Cursor()
 
     def MrRockControls():
@@ -45,67 +48,78 @@ if __name__ == "__main__":
     #         Screen.Title = "Your are god Level!"
     #         py.display.set_icon(Screen.IconGod)
     #         MrCoin.Amount = 1000
+    def Exit():
+
+        for shards in all_shards :
+            for coins in all_coins:
+        
+                if MrRock.Health <= 0:
+                    MrRock.RunningRock = False
+                    coins.Velocity = 0
+                    shards.Velocity = 0
+                    MrRock.Velocity = 0
+                    Screen.MainScreen.blit(Screen.BlackLayer, (0, 0))
+                    MrRock.Coordinates()
+                    Screen.MainScreen.blit(Screen.ExitButton, (245, 225))
+                    MainMouse = py.mouse.get_pos()
+                    MainMouseRect = py.Rect(MainMouse[0], MainMouse[1], 20, 20)
+
+                    if (
+                        MainMouseRect.colliderect(Screen.ExitButtonRect)
+                        and py.mouse.get_pressed()[0]
+                    ):
+
+                        Screen.Running = False
 
     def ShardsControls():
-        MrShards.Display()
-        if MrRock.Health >= 0:
-            if MrRock.RectRock.colliderect(MrShards.MainRect):
-                MrShards.XAxix = random.randint(0, 545)
-                MrShards.YAxix = -3
-                if Screen.Start == False:
-                    MrRock.Health -= MrShards.Damage
 
-        elif MrRock.Health <= 0 and Screen.Start == False:
-            MrShards.Velocity = 0
-            MrRock.RunningRock = False
+        for shards in all_shards:
+            shards.Display()
+        
+
+            if MrRock.Health >= 0:
+                if MrRock.RectRock.colliderect(shards.MainRect):
+                    shards.XAxix = random.randint(0, random.randint(0,545))
+                    shards.YAxix = random.randint(-64, random.randint(-32,-1))
+                    if Screen.Start == False:
+                        MrRock.Health -= shards.Damage
+                
+                Exit()
+
+            elif MrRock.Health <= 0 and Screen.Start == False:
+                shards.Velocity = 0
+                MrRock.RunningRock = False
 
     def CoinControls():
-        MrCoin.Display()
-        if MrRock.Health >= 0:
-            if MrRock.RectRock.colliderect(MrCoin.MainRect):
-                MrCoin.Sound.play()
-                MrCoin.XAxix = random.randint(0, 545)
-                MrCoin.YAxix = -3
-                if Screen.Start == False:
-                    MrRock.Score += MrCoin.Amount
-                    if MrRock.Score == 100:
-                        MrShards.Damage = 20
-                        MrCoin.Amount = 20
-                        MrShards.Velocity += 3
-                    elif MrRock.Score == 500:
-                        MrShards.Damage = 30
-                        MrCoin.Amount = 50
-                        MrShards.Velocity += 5
-                    elif MrRock.Score == 1000:
-                        MrShards.Damage = 45
-                        MrShards.Velocity += 8
-                        MrCoin.Amount = 100
 
-        elif MrRock.Health <= 0 and Screen.Start == False:
-            MrCoin.Velocity = 0
-            MrRock.RunningRock = False
+        for coins in all_coins:
+            coins.Display()
+
+            if MrRock.Health >= 0:
+                if MrRock.RectRock.colliderect(coins.MainRect):
+                    coins.Sound.play()
+                    coins.XAxix = random.randint(0, random.randint(0,545))
+                    coins.YAxix = random.randint(-64, random.randint(-32,-1))
+                    
+                    if Screen.Start == False:
+                        MrRock.Score += coins.Amount
+
+                        if MrRock.Score == 100:
+                            coins.Amount = 20
+                            
+                        elif MrRock.Score == 500:
+                            coins.Amount = 50    
+
+                        elif MrRock.Score == 1000:
+                            coins.Amount = 100
+
+            elif MrRock.Health <= 0 and Screen.Start == False:
+                coins.Velocity = 0
+                MrRock.RunningRock = False
 
     # def CursorControls():
     #     MrCursor.Display()
 
-    def Exit():
-        if MrRock.Health <= 0:
-            MrRock.RunningRock = False
-            MrCoin.Velocity = 0
-            MrShards.Velocity = 0
-            MrRock.Velocity = 0
-            Screen.MainScreen.blit(Screen.BlackLayer, (0, 0))
-            MrRock.Coordinates()
-            Screen.MainScreen.blit(Screen.ExitButton, (245, 225))
-            MainMouse = py.mouse.get_pos()
-            MainMouseRect = py.Rect(MainMouse[0], MainMouse[1], 20, 20)
-
-            if (
-                MainMouseRect.colliderect(Screen.ExitButtonRect)
-                and py.mouse.get_pressed()[0]
-            ):
-
-                Screen.Running = False
 
     def Mainloop():
         # The main loop helping to run and exit the Game!

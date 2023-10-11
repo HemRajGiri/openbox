@@ -21,10 +21,10 @@ class Shards(py.sprite.Sprite):
             py.image.load("images/objects/Shards/ShardsMove1.png"),
             py.image.load("images/objects/Shards/Shards.png"),
         ]
-        self.XAxix = 200
-        self.YAxix = -32
+        self.XAxix = random.randint(0,random.randint(0,545))
+        self.YAxix = random.randint(-64,random.randint(-32,-1))
         self.MainRect = py.Rect(self.XAxix, self.YAxix, 32, 32)
-        self.Velocity = 3
+        self.Velocity = random.randint(3,10)
         self.Grouping = py.sprite.Group()
         self.Damage = 10
         self.Change = 0
@@ -38,8 +38,9 @@ class Shards(py.sprite.Sprite):
                 self.Change = 0
 
         else:
-            self.XAxix = random.randint(0, 545)
-            self.YAxix = -32
+            self.Velocity = random.randint(3,10)
+            self.XAxix = random.randint(0, random.randint(0,545))
+            self.YAxix = random.randint(-64,random.randint(-32,-1))
 
         self.MainRect = py.Rect(self.XAxix, self.YAxix, 32, 32)
 
@@ -59,10 +60,10 @@ class Coins(py.sprite.Sprite):
             py.image.load("images/objects/Coins/Coin5.png"),
             py.image.load("images/objects/Coins/Coin.png"),
         ]
-        self.XAxix = 350
-        self.YAxix = -32
+        self.XAxix = random.randint(0, random.randint(0,545))
+        self.YAxix = random.randint(-64,random.randint(-32,-1))
         self.MainRect = py.Rect(self.XAxix, self.YAxix, 16, 16)
-        self.Velocity = 3
+        self.Velocity = random.randint(3,8)
         self.Amount = 10
         self.Change = 0
         self.Sound = py.mixer.Sound("audio/Coin.mp3")
@@ -78,8 +79,9 @@ class Coins(py.sprite.Sprite):
                 self.Change = 0
 
         else:
-            self.XAxix = random.randint(0, 545)
-            self.YAxix = -3
+            self.Velocity = random.randint(3,8)
+            self.XAxix = random.randint(0,random.randint(0,545))
+            self.YAxix = random.randint(-64,random.randint(-32,-1))
             if Screen.Start == False and self.Velocity < 13 and MrRock0.Score >= 100:
                 self.Velocity += 1
 

@@ -21,6 +21,13 @@ class Rock:
             py.image.load("images/player/Moving3.png"),
         ]
         self.Myfont = py.font.Font("prompt/Prompt-Light.ttf", 11)
+
+        self.power_icons = [
+            py.image.load("images/player/jump.png"),
+            py.image.load("images/player/boost.png")
+        ]
+
+
         self.FallSound = py.mixer.Sound("audio/FallingRock.mp3")
         self.X = 285
         self.Y = 402
@@ -37,8 +44,6 @@ class Rock:
         self.Angle = 0
         self.initialScore = 20
         self.BoostDetect = " "
-        self.ShowSpaceBar = True
-        self.ShowShiftBar = True
 
     def Display(self):
         # Displaying the Rock and the obstacle
@@ -64,11 +69,9 @@ class Rock:
         if self.RunningRock == True:
             if py.key.get_pressed()[K_SPACE] and self.Score >= 100:
                 self.DoJump = True
-            if self.ShowSpaceBar == True and self.Score >= 100 and self.Score < 2000:
-                Spaceunlock = self.Myfont.render(
-                    "Jump Unlocked! Press Space to Jump!", True, self.FontColour
-                )
-                Screen.MainScreen.blit(Spaceunlock, (200, 200))
+            if self.Score >= 100 and self.Score < 2000:
+                small_icon = py.transform.scale(self.power_icons[0],(24,24))
+                Screen.MainScreen.blit(small_icon, (13, 460))
                 if self.Score == 120:
                     self.ShowSpaceBar = False
 
@@ -101,14 +104,14 @@ class Rock:
         # Rendering Position of Rock
 
         self.RectRock = py.Rect(self.X, self.Y, 32, 32)
-        self.Myfont = py.font.Font("prompt/Prompt-Light.ttf", 11)
+        self.Myfont = py.font.Font("prompt/Prompt-Bold.ttf", 20)
         # PosText = self.Myfont.render(f"Pos : {self.X,self.Y}", True, self.FontColour)
         # Screen.MainScreen.blit(PosText, (0, 0))
 
         # Render the score Board
         Screen.MainScreen.blit(Screen.ScoreBoard, (0, 0))
         ScoreText = self.Myfont.render(f"{self.Score:}", True, self.FontColour)
-        Screen.MainScreen.blit(ScoreText, (64, 5))
+        Screen.MainScreen.blit(ScoreText, (100, 1))
 
         # HealthText = self.Myfont.render(
         #     f"Health : {self.Health}", True, self.FontColour
@@ -122,11 +125,9 @@ class Rock:
 
         # ScoreText = self.Myfont.render(f"{self.BoostDetect:}", True, self.FontColour)
         # Screen.MainScreen.blit(ScoreText, (64, 32))
-        if self.ShowShiftBar == True and self.Score >= 220 and self.Health >= 10  and self.Score < 2000:
-            Shiftunlock = self.Myfont.render(
-                "Boost Unlocked! Press Shift to Boost!", True, self.FontColour
-            )
-            Screen.MainScreen.blit(Shiftunlock, (200, 200))
+        if self.Score >= 220 and self.Health >= 10  and self.Score < 2000:
+            small_icon = py.transform.scale(self.power_icons[1],(24,24))
+            Screen.MainScreen.blit(small_icon, (46, 460))
             if self.Score == 240:
                 self.ShowShiftBar = False
 
